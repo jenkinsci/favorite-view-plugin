@@ -27,6 +27,7 @@ THE SOFTWARE.
 <%@ attribute name="href" required="true" type="java.lang.String" %>
 <%@ attribute name="active" required="true" type="java.lang.Boolean" %>
 -->
+<?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core">
   <j:choose>
     <j:when test="${tabPass=='pass1'}">
