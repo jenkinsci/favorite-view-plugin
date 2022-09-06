@@ -1,7 +1,6 @@
 package hudson.plugins.favoriteview;
 
 import hudson.Extension;
-import hudson.model.Hudson;
 import hudson.model.User;
 import hudson.model.View;
 import hudson.security.ACL;
@@ -12,7 +11,8 @@ import hudson.views.ViewsTabBarDescriptor;
 
 import java.io.IOException;
 
-import org.acegisecurity.AccessDeniedException;
+import jenkins.model.Jenkins;
+import org.springframework.security.access.AccessDeniedException;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.HttpResponses;
@@ -65,7 +65,7 @@ public class FavoriteViewsTabBar extends ViewsTabBar implements
 	}
 
 	public static View getViewById(String id) {
-		return Hudson.getInstance().getView(id);
+		return Jenkins.get().getView(id);
 	}
 
 	public boolean isFavorite(View view) {
