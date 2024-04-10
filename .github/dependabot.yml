@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Enable GitHub Actions updates
+  - package-ecosystem: "github-actions"
+    directory: "/" # Root directory for scanning
+    schedule:
+      interval: "monthly"
+
+  # Enable  Maven dependency updates 
+  - package-ecosystem: "maven" 
+    directory: "/" 
+    schedule:
+      interval: "monthly"
