@@ -44,7 +44,7 @@
     <properties>
         <revision>5.2.2</revision>
         <changelist>-SNAPSHOT</changelist>
-        <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
+        <gitHubRepo>jenkinsci/favorite-view-plugin</gitHubRepo>
         <jenkins.version>2.414.3</jenkins.version>
         <useBeta>true</useBeta>
         <linkXRef>false</linkXRef>
