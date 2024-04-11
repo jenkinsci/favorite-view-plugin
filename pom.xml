@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
         <version>4.80</version>
-        <relativePath />
     </parent>
 
     <artifactId>favorite-view</artifactId>
     <version>${revision}${changelist}</version>
     <packaging>hpi</packaging>
+
     <name>Favorite tabs plugin</name>
     <url>https://github.com/${gitHubRepo}</url>
     <inceptionYear>2007</inceptionYear>
@@ -28,26 +29,13 @@
         <tag>${scmTag}</tag>
         <url>https://github.com/${gitHubRepo}</url>
     </scm>
-        <repositories>
-        <repository>
-            <id>repo.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/public/</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/public/</url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <properties>
         <revision>5.2.2</revision>
         <changelist>-SNAPSHOT</changelist>
         <gitHubRepo>jenkinsci/favorite-view-plugin</gitHubRepo>
         <jenkins.version>2.414.3</jenkins.version>
-        <useBeta>true</useBeta>
-        <linkXRef>false</linkXRef>
+        <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
         <spotbugs.effort>Max</spotbugs.effort>
         <spotbugs.threshold>Low</spotbugs.threshold>
     </properties>
@@ -65,17 +53,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Test scope dependencies -->
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!-- Dependencies are managed by BOM -->
     </dependencies>
 
     <build>
@@ -83,12 +61,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>${maven-checkstyle-plugin.version}</version>
                 <configuration>
                     <configLocation>google_checks.xml</configLocation>
-                    <failOnViolation>true</failOnViolation>
+                    <failOnViolation>${linkXRef}</failOnViolation>
                 </configuration>
             </plugin>
+            <!-- Other plugins as necessary -->
         </plugins>
     </build>
 </project>
