@@ -20,23 +20,23 @@
         <l:overflowButton clazz="fv-overflow--container" tooltip="">
           <j:if test="${currentView.hasPermission(currentView.CREATE)}">
             <dd:custom>
-              <div class="fv-overflow jenkins-dropdown__item" data-url="${rootURL}/${currentView.owner.url}newView">
+              <a class="fv-overflow jenkins-dropdown__item" href="${rootURL}/${currentView.owner.url}newView">
                 <div class="jenkins-dropdown__item__icon>">
                   <l:icon src="symbol-add" class="icon-md"/>
                 </div>
                 ${%Create New View}
-              </div>
+              </a>
             </dd:custom>
           </j:if>
           <j:forEach var="v" items="${views}">
             <j:if test="${v!=it.view &amp;&amp; !it.isFavorite(v)}">
               <dd:custom>
-              <div class="fv-overflow jenkins-dropdown__item" data-url="${rootURL}/${v.url}">
+              <a class="fv-overflow jenkins-dropdown__item" href="${rootURL}/${v.url}">
                 <div class="jenkins-dropdown__item__icon>">
                   <l:icon src="symbol-browsers" class="icon-md"/>
                 </div>
                 ${v.displayName}
-              </div>
+              </a>
               </dd:custom>/
             </j:if>
           </j:forEach>

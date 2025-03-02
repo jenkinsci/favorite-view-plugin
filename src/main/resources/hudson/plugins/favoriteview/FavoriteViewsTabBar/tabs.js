@@ -31,9 +31,3 @@ function toggleFavoriteView(e) {
     }
   });
 }
-
-Behaviour.specify(".fv-overflow", "favorite-view-overflow", 0, (e) => {
-  e.onclick = () => {
-    top.location.href = e.dataset.url;
-  }
-});
