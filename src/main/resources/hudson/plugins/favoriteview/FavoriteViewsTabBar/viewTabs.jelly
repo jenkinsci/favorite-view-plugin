@@ -1,11 +1,12 @@
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
-  
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout" xmlns:dd="/lib/layout/dropdowns">
+  <st:adjunct includes="hudson.plugins.favoriteview.FavoriteViewsTabBar.tabs"/>
+
   <!-- view tab bar -->
   <l:tabBar>
     <j:forEach var="v" items="${views}">
       <j:if test="${it.isFavorite(v) || v==it.view || h.anonymous}">
-      	<j:set var="name" value="${v.viewName}"/>
+      	<j:set var="name" value="${v.displayName}"/>
       	<j:set var="active" value="${v==it.view}"/>
       	<j:set var="favorite" value="${it.isFavorite(v)}"/>
       	<j:set var="href" value="${rootURL}/${v.url}"/>
@@ -14,29 +15,33 @@
       	
       </j:if>
     </j:forEach>
-    <j:if test="${tabPass=='pass2'}">
     <j:if test="${!h.anonymous}">
-  <td class="inactive noLeft">
-  <form name="viewForm">
-  <select name="viewSelect" 
-    onChange="top.location.href = this.form.viewSelect.options[this.form.viewSelect.selectedIndex].value;
-    return false;">
-    <option value="">More...</option>
-    <j:if test="${it.hasPermission(it.CREATE)}">
-      <option name="Add a view..." value="${rootURL}/${it.owner.url}newView">Create a view...</option>
+      <div class="tab">
+        <l:overflowButton clazz="fv-overflow--container" tooltip="">
+          <j:if test="${currentView.hasPermission(currentView.CREATE)}">
+            <dd:custom>
+              <div class="fv-overflow jenkins-dropdown__item" data-url="${rootURL}/${currentView.owner.url}newView">
+                <div class="jenkins-dropdown__item__icon>">
+                  <l:icon src="symbol-add" class="icon-md"/>
+                </div>
+                ${%Create New View}
+              </div>
+            </dd:custom>
+          </j:if>
+          <j:forEach var="v" items="${views}">
+            <j:if test="${v!=it.view &amp;&amp; !it.isFavorite(v)}">
+              <dd:custom>
+              <div class="fv-overflow jenkins-dropdown__item" data-url="${rootURL}/${v.url}">
+                <div class="jenkins-dropdown__item__icon>">
+                  <l:icon src="symbol-browsers" class="icon-md"/>
+                </div>
+                ${v.displayName}
+              </div>
+              </dd:custom>/
+            </j:if>
+          </j:forEach>
+        </l:overflowButton>
+      </div>
     </j:if>
-    <j:forEach var="v" items="${views}">
-      <j:if test="${v!=it.view &amp;&amp; !v.favorite}">
-        <option value="${rootURL}/${v.url}" selected="${v==it?'true':null}">${v.viewName}</option>    
-      </j:if>
-    </j:forEach>
-  </select>
-  </form>
-  </td>
-  </j:if>
-  </j:if>
-
-
-             
   </l:tabBar>
 </j:jelly>

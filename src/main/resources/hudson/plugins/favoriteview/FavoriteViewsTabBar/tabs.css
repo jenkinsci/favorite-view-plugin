@@ -1,0 +1,14 @@
+.fv-link {
+  gap: 10px;
+}
+
+.fv-overflow {
+  display: flex;
+  gap: 5px;
+}
+
+.fv-overflow--container {
+  margin: 2px;
+  border-radius: 100px;
+  min-height: 34px !important;
+}
