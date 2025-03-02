@@ -17,17 +17,7 @@
     </j:forEach>
     <j:if test="${!h.anonymous}">
       <div class="tab">
-        <l:overflowButton clazz="fv-overflow--container" tooltip="">
-          <j:if test="${currentView.hasPermission(currentView.CREATE)}">
-            <dd:custom>
-              <a class="fv-overflow jenkins-dropdown__item" href="${rootURL}/${currentView.owner.url}newView">
-                <div class="jenkins-dropdown__item__icon>">
-                  <l:icon src="symbol-add" class="icon-md"/>
-                </div>
-                ${%Create New View}
-              </a>
-            </dd:custom>
-          </j:if>
+        <l:overflowButton clazz="fv-overflow--container" tooltip="${%More views}">
           <j:forEach var="v" items="${views}">
             <j:if test="${v!=it.view &amp;&amp; !it.isFavorite(v)}">
               <dd:custom>
@@ -40,6 +30,16 @@
               </dd:custom>/
             </j:if>
           </j:forEach>
+          <j:if test="${currentView.hasPermission(currentView.CREATE)}">
+            <dd:custom>
+              <a class="fv-overflow jenkins-dropdown__item" href="${rootURL}/${currentView.owner.url}newView">
+                <div class="jenkins-dropdown__item__icon>">
+                  <l:icon src="symbol-add" class="icon-md"/>
+                </div>
+                ${%Create New View}
+              </a>
+            </dd:custom>
+          </j:if>
         </l:overflowButton>
       </div>
     </j:if>
