@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.47</version>
+    <version>5.7</version>
     <relativePath />
   </parent>
 
@@ -15,9 +15,30 @@
   <url>https://github.com/jenkinsci/favorite-view-plugin</url>
 
   <properties>
-    <jenkins.version>2.346.1</jenkins.version>
+    <jenkins.baseline>2.479</jenkins.baseline>
+
+    <jenkins.version>${jenkins.baseline}.1</jenkins.version>
     <changelist>999999-SNAPSHOT</changelist>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.jenkins.tools.bom</groupId>
+        <artifactId>bom-${jenkins.baseline}.x</artifactId>
+        <version>4051.v78dce3ce8b_d6</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>ionicons-api</artifactId>
+    </dependency>
+  </dependencies>
 
   <repositories>
     <repository>
