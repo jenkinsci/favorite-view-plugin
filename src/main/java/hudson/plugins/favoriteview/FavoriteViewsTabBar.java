@@ -57,7 +57,7 @@ public class FavoriteViewsTabBar extends ViewsTabBar implements
 	}
 
 	public static View getView() {
-		return Stapler.getCurrentRequest().findAncestorObject(View.class);
+		return Stapler.getCurrentRequest2().findAncestorObject(View.class);
 	}
 
 	public static String getViewId(View view) {
