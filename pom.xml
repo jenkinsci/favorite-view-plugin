@@ -4,8 +4,8 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.47</version>
-    <relativePath />
+    <version>4.51</version>
+    <relativePath/>
   </parent>
 
   <artifactId>favorite-view</artifactId>
@@ -15,7 +15,7 @@
   <url>https://github.com/jenkinsci/favorite-view-plugin</url>
 
   <properties>
-    <jenkins.version>2.346.1</jenkins.version>
+    <jenkins.version>2.346.3</jenkins.version>
     <changelist>999999-SNAPSHOT</changelist>
   </properties>
 
