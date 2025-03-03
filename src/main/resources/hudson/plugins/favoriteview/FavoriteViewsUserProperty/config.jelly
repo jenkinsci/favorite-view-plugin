@@ -2,6 +2,6 @@
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
 	<f:entry title="">
 		Favorite views are
-		configured by clicking the star icon on view tabs. 
+		configured by clicking the star icon on view tabs.
     </f:entry>
 </j:jelly>
