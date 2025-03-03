@@ -12,7 +12,7 @@ import java.util.Set;
 
 import net.sf.json.JSONObject;
 
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 
 public class FavoriteViewsUserProperty extends UserProperty {
 	private Set<String> favoriteViews = Collections
@@ -31,7 +31,7 @@ public class FavoriteViewsUserProperty extends UserProperty {
 	}
 	
 	@Override
-	public UserProperty reconfigure(StaplerRequest req, JSONObject form)
+	public UserProperty reconfigure(StaplerRequest2 req, JSONObject form)
 			throws FormException {
 		return this;
 	}
