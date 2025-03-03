@@ -4,3 +4,6 @@
 target/
 work/
 .idea
+*.iml
+*.iws
+*.ipr
