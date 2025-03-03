@@ -4,21 +4,13 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.User;
 import hudson.model.View;
-import hudson.security.ACL;
-import hudson.security.AccessControlled;
-import hudson.security.Permission;
 import hudson.views.ViewsTabBar;
 import hudson.views.ViewsTabBarDescriptor;
-
 import java.io.IOException;
-
-import jenkins.model.Jenkins;
 import org.jenkinsci.Symbol;
-import org.kohsuke.stapler.DataBoundSetter;
+import org.kohsuke.stapler.StaplerResponse2;
 import org.kohsuke.stapler.verb.POST;
-import org.springframework.security.access.AccessDeniedException;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.HttpResponses;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.Stapler;
@@ -40,26 +32,25 @@ public class FavoriteViewsTabBar extends ViewsTabBar {
 		}
 
     @POST
-    public HttpResponse doToggleFavorite(
+    public void doToggleFavorite(
+        StaplerResponse2 resp,
 				@QueryParameter("favorite") String favorite,
 				@QueryParameter("view") String view) throws IOException {
-			User user = User.current();
-			if (user == null)
-				return HttpResponses.forbidden();
+      User user = User.current();
+      if (user != null) {
 
-			FavoriteViewsUserProperty property = user
-					.getProperty(FavoriteViewsUserProperty.class);
-			if (property == null) {
-				property = new FavoriteViewsUserProperty();
-				user.addProperty(property);
-			}
+        FavoriteViewsUserProperty property = user.getProperty(FavoriteViewsUserProperty.class);
+        if (property == null) {
+          property = new FavoriteViewsUserProperty();
+          user.addProperty(property);
+        }
 
-			property.setFavorite(view, "true".equals(favorite));
-			user.save();
-
-			return HttpResponses.forwardToPreviousPage();
-		}
-
+        property.setFavorite(view, "true".equals(favorite));
+        user.save();
+      } else {
+        throw HttpResponses.forbidden();
+      }
+    }
 	}
 
 	public static View getView() {

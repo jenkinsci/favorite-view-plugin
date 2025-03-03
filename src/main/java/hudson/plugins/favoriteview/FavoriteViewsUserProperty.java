@@ -5,14 +5,11 @@ import hudson.Extension;
 import hudson.model.UserProperty;
 import hudson.model.UserPropertyDescriptor;
 import hudson.model.User;
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
 import net.sf.json.JSONObject;
-
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.StaplerRequest2;
 
