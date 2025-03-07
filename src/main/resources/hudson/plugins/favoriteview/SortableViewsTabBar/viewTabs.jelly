@@ -1,0 +1,40 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout" xmlns:dd="/lib/layout/dropdowns">
+  <st:adjunct includes="hudson.plugins.favoriteview.tabs"/>
+  <j:set var="fvViews" value="${it.getViews(views)}"/>
+  <div id="fv-sortTabs-template" class="jenkins-hidden" data-title="${%Sort Views}">
+    <form action="${rootURL}/${it.descriptor.descriptorUrl}/sortViews" method="post" class="no-json">
+      <input type="hidden" name="itemGroup" value="${it.itemGroup}"/>
+      <div id="fv-sortcontainer" class="with-drag-drop">
+        <j:forEach var="v" items="${fvViews}">
+          <div class="repeated-chunk">
+            <div>
+              <div class="repeated-chunk__header">
+                <div class="dd-handle"/>
+                <div class="fv-line">
+                  ${v.displayName}
+                </div>
+                <input type="hidden" name="viewName" value="${v.viewName}"/>
+              </div>
+            </div>
+          </div>
+        </j:forEach>
+      </div>
+    </form>
+  </div>
+
+  <!-- view tab bar -->
+  <l:tabBar>
+    <j:forEach var="v" items="${fvViews}">
+      <l:tab name="${v.displayName}" active="${v==currentView}" href="${rootURL}/${v.url}" />
+    </j:forEach>
+    <j:if test="${currentView.hasPermission(currentView.CREATE)}">
+      <l:tabNewItem href="${rootURL}/${currentView.owner.url}newView" title="${%New View}" />
+    </j:if>
+    <div class="tab" id="fv-sortTabs">
+      <a class="addTab" href="#" tooltip="${%Sort Views}">
+        <l:icon src="symbol-sort plugin-favorite-view"/>
+      </a>
+    </div>
+  </l:tabBar>
+</j:jelly>
