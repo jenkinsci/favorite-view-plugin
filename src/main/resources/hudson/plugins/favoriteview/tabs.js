@@ -31,3 +31,21 @@ function toggleFavoriteView(e) {
     }
   });
 }
+
+Behaviour.specify("#fv-sortTabs", "favorite-view-sort-tabs", 0, (e) => {
+  e.onclick = (event) => {
+    event.preventDefault();
+    const formTemplate = document.getElementById("fv-sortTabs-template");
+    const form = formTemplate.firstElementChild.cloneNode(true);
+    form.classList.remove("no-json");
+    const title = formTemplate.dataset.title;
+    dialog.form(form, {
+      title: title,
+      okText: "Sort",
+    });
+  }
+});
+
+Behaviour.specify("#fv-sortcontainer", "favorite-view-sortcontainer", 0, function(s) {
+  registerSortableDragDrop(s);
+});

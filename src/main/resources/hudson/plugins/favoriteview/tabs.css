@@ -1,0 +1,27 @@
+.fv-link {
+  gap: 10px;
+}
+
+.fv-line {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.fv-overflow--container {
+  margin: 2px;
+  border-radius: 100px;
+  min-height: 34px !important;
+}
+
+#fv-sortcontainer {
+  color: var(--text-color);
+}
+
+#fv-sortcontainer .repeated-chunk__header{
+  margin: 0;
+}
+
+#fv-sortcontainer .repeated-chunk {
+  padding: 0.4rem 1rem;
+}
