@@ -17,8 +17,9 @@ Both support sorting of the tabs on a per user basis.
   ![Sortable](/docs/sortable.png)
 
 ### Enable
-Go to `Manage Jenkins -> System` or the folder config and select `Favorite View` from the `Views Tab Bar` dropdown.
+Go to `Manage Jenkins -> System` or the folder config and select `Favorite Views` or `Sortable Views` from the `Views Tab Bar` dropdown.
 
 
 ### Known limitations
-When a favorite view is renamed it will no longer be a favorite.
+- When a favorite view is renamed it will no longer be a favorite.
+- When a folder is renamed the favorite information is lost for that folder.
