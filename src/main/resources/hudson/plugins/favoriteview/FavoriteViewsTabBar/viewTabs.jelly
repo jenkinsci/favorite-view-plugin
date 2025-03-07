@@ -64,7 +64,7 @@
               </a>
             </dd:custom>
           </j:if>
-          <dd:item id="fv-sortTabs" icon="symbol-funnel-outline plugin-ionicons-api" text="${%Sort Views}"/>
+          <dd:item id="fv-sortTabs" icon="symbol-sort plugin-favorite-view" text="${%Sort Views}"/>
         </l:overflowButton>
       </div>
     </j:if>

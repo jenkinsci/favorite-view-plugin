@@ -33,7 +33,7 @@
     </j:if>
     <div class="tab" id="fv-sortTabs">
       <a class="addTab" href="#" tooltip="${%Sort Views}">
-        <l:icon src="symbol-funnel-outline plugin-ionicons-api"/>
+        <l:icon src="symbol-sort plugin-favorite-view"/>
       </a>
     </div>
   </l:tabBar>
