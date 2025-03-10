@@ -2,29 +2,31 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout" xmlns:dd="/lib/layout/dropdowns">
   <st:adjunct includes="hudson.plugins.favoriteview.tabs"/>
   <j:set var="fvViews" value="${it.getViews(views)}"/>
-  <div id="fv-sortTabs-template" class="jenkins-hidden" data-title="${%Sort Views}">
-    <form action="${rootURL}/${it.descriptor.descriptorUrl}/sortViews" method="post" class="no-json">
-      <input type="hidden" name="itemGroup" value="${it.itemGroup}"/>
-      <div id="fv-sortcontainer" class="with-drag-drop">
-        <j:forEach var="v" items="${fvViews}">
-          <div class="repeated-chunk">
-            <div>
-              <div class="repeated-chunk__header">
-                <div class="dd-handle"/>
-                <div class="fv-line">
-                  ${v.displayName}
-                  <j:if test="${it.isFavorite(v)}">
-                    <l:icon src="symbol-star plugin-ionicons-api" class="jenkins-!-color-yellow icon-sm"/>
-                  </j:if>
+  <j:if test="${!h.anonymous}">
+    <div id="fv-sortTabs-template" class="jenkins-hidden" data-title="${%Sort Views}">
+      <form action="${rootURL}/${it.descriptor.descriptorUrl}/sortViews" method="post" class="no-json">
+        <input type="hidden" name="itemGroup" value="${it.itemGroup}"/>
+        <div id="fv-sortcontainer" class="with-drag-drop">
+          <j:forEach var="v" items="${fvViews}">
+            <div class="repeated-chunk">
+              <div>
+                <div class="repeated-chunk__header">
+                  <div class="dd-handle"/>
+                  <div class="fv-line">
+                    ${v.displayName}
+                    <j:if test="${it.isFavorite(v)}">
+                      <l:icon src="symbol-star plugin-ionicons-api" class="jenkins-!-color-yellow icon-sm"/>
+                    </j:if>
+                  </div>
+                  <input type="hidden" name="viewName" value="${v.viewName}"/>
                 </div>
-                <input type="hidden" name="viewName" value="${v.viewName}"/>
               </div>
             </div>
-          </div>
-        </j:forEach>
-      </div>
-    </form>
-  </div>
+          </j:forEach>
+        </div>
+      </form>
+    </div>
+  </j:if>
 
   <!-- view tab bar -->
   <l:tabBar>
