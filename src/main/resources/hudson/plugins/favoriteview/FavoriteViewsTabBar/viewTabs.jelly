@@ -40,7 +40,7 @@
       </j:if>
     </j:forEach>
     <j:if test="${!h.anonymous}">
-      <div class="tab">
+      <div>
         <l:overflowButton clazz="fv-overflow--container" tooltip="${%More views}">
           <j:forEach var="v" items="${fvViews}">
             <j:if test="${v!=it.view &amp;&amp; !it.isFavorite(v)}">
