@@ -8,18 +8,17 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 public class SortableViewsTabBar extends ViewsTabBar implements FavoriteViewsTabBarBase {
 
-  @DataBoundConstructor
-  public SortableViewsTabBar() {
-  }
+    @DataBoundConstructor
+    public SortableViewsTabBar() {}
 
-  @Extension
-  @Symbol("sortable")
-  public static class DescriptorImpl extends AbstractFavoriteViewsTabBarDescriptor {
+    @Extension
+    @Symbol("sortable")
+    public static class DescriptorImpl extends AbstractFavoriteViewsTabBarDescriptor {
 
-    @Override
-    @NonNull
-    public String getDisplayName() {
-      return "Sortable Views";
+        @Override
+        @NonNull
+        public String getDisplayName() {
+            return "Sortable Views";
+        }
     }
-  }
 }
