@@ -1,7 +1,6 @@
 package hudson.plugins.favoriteview;
 
 import com.cloudbees.hudson.plugins.folder.AbstractFolder;
-import hudson.model.ItemGroup;
 import hudson.model.User;
 import hudson.model.View;
 import hudson.model.ViewGroup;
@@ -34,7 +33,7 @@ public interface FavoriteViewsTabBarBase {
     }
 
     default Collection<View> getViews(Collection<View> views) {
-        ItemGroup<?> itemGroup = Stapler.getCurrentRequest2().findAncestorObject(ItemGroup.class);
+        String itemFullname = getItemGroup();
         User user = User.current();
         if (user == null) {
             return views;
@@ -44,7 +43,6 @@ public interface FavoriteViewsTabBarBase {
             return views;
         }
 
-        String itemFullname = itemGroup.getFullName();
         List<String> viewsForItemGroup = property.getViewsForItemGroup(itemFullname);
 
         if (viewsForItemGroup == null) {
